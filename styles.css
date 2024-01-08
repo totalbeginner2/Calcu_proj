@@ -1,0 +1,82 @@
+
+.title {
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.calculator {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 500px;
+    width: 500px;
+    border: 1px solid black;
+}
+
+.display {
+    display: flex;
+    justify-content: end;
+    height: 200px;
+    width: 400px;
+    border: 1px solid black;
+}
+
+.functionality {
+    display: flex;
+    height: 500px;
+    width: 400px;
+}
+
+.numAndOperator {
+border: 1px solid black;
+display: flex;
+}
+
+.nums {
+    height: 300px;
+    width: 350px;
+    margin-right: -40px;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.clearBtn{
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.numBox {
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 30px;
+ }
+
+.operators {
+    border: 1px solid black;
+}
+
+.oper {
+    text-align: center;
+    font-size: 50px;
+    height: 80px;
+    width: 80px;
+    border: 1px solid black;
+}
+
+.displayNum {
+    margin: 0;
+    font-size: 50px;
+    text-align: right;
+}
