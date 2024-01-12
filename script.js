@@ -82,31 +82,44 @@ function clearDisplay(){
 
 
 function operate(num1,operator,num2){
-  switch(operator){
-
-  };
+    num2 = displayBox.textContent;
+    let result = 0;
+    switch(operator){
+        case 'add':
+           result = parseFloat(num1) + parseFloat(num2);
+            break;
+        case 'subtract':
+            result = parseFloat(num1) - parseFloat(num2);
+            break;
+        case 'multiply':
+           result =parseFloat(num1) * parseFloat(num2);
+            break;
+        case 'divide':
+            result = parseFloat(num1) / parseFloat(num2);
+            break;
+        };
+        displayBox.textContent = result;
 };
 
 function setOperator(opera){
-
+num1 = displayBox.textContent;
+operator = opera;
+clearDisplay();
 };
 
 
 let operaBtn = document.querySelectorAll('.oper');
 operaBtn.forEach((operaButton) => {
         operaButton.addEventListener("click", function (){
-                console.log(operaButton.dataset.opera);
+            let operation = operaButton.dataset.opera;
+                setOperator(operation);
              });
 })
 
-
-
-//let samplebutton = document.querySelector('.opera');
-//samplebutton.addEventListener("click", function(){
- //   let numBox = document.querySelector('.display');
- //   let numtemp = numBox.innerText;
-  //  console.log(numtemp);
-//});
+let equalBtn = document.querySelector('.equal');
+equalBtn.addEventListener("click", function (){
+        operate(num1,operator,num2);
+});
 
 
 

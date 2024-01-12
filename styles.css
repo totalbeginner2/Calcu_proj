@@ -75,6 +75,13 @@ display: flex;
     border: 1px solid black;
 }
 
+.equal {
+    text-align: center;
+    font-size: 50px;
+    height: 80px;
+    width: 80px;
+    border: 1px solid black; 
+}
 .displayNum {
     margin: 0;
     font-size: 50px;
