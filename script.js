@@ -1,40 +1,10 @@
-let num1 = 0;
-let num2 = 0;
+let num1 = [];
+let num2 = [];
 let operator = null;
+let firstNumInit = true;
+let secondNumInit = false;
+let result = null;
 const displayBox = document.querySelector('.displayNum');
-
-function add(num1,num2){
-    return num1 + num2;
-};
-
-function subtract(num1,num2){
-    return num1 - num2;
-};
-
-function multiply(num1,num2){
-    return num1 * num2;
-};
-
-function divide(num1,num2){
-    return num1 / num2;
-};
-
-function add(num1,num2){
-    return num1 + num2;
-};
-
-function subtract(num1,num2){
-    return num1 - num2;
-};
-
-function multiply(num1,num2){
-    return num1 * num2;
-};
-
-function divide(num1,num2){
-    return num1 / num2;
-};
-
 
 
 let numBox = document.querySelector('.nums');
@@ -60,14 +30,21 @@ if(x == '12'){
 };
 };
 
-
 let numButtons = document.querySelectorAll('.numBox');
 numButtons.forEach((numButton) => {
     numButton.addEventListener("click", function(){
         displayBox.textContent += numButton.dataset.num;
+        if(firstNumInit == true){
+            num1 += numButton.dataset.num;
+        }   else if(firstNumInit == false && secondNumInit == true){
+            num2 += numButton.dataset.num;
+            displayBox.textContent = num2;
+        }
+
     });
 }
 );
+
 
 
 let clearButton = document.querySelector('.clearBtn');
@@ -78,47 +55,67 @@ clearButton.addEventListener("click", function (){
 
 function clearDisplay(){
     displayBox.textContent = "";
+    num1 = [];
+    num2 = [];
+    operator = null;
+    firstNumInit = true;
+    econdNumInit = false;
+    result = null;
 };
 
 
-function operate(num1,operator,num2){
-    num2 = displayBox.textContent;
-    let result = 0;
+function operate(num1,operator,num2){  
     switch(operator){
         case 'add':
-           result = parseFloat(num1) + parseFloat(num2);
+            result = parseFloat(num1) + parseFloat(num2);
+            displayBox.textContent = result;
             break;
         case 'subtract':
             result = parseFloat(num1) - parseFloat(num2);
+            displayBox.textContent = result;
             break;
         case 'multiply':
-           result =parseFloat(num1) * parseFloat(num2);
+            result = parseFloat(num1) * parseFloat(num2);
+            displayBox.textContent = result;
             break;
         case 'divide':
             result = parseFloat(num1) / parseFloat(num2);
+            displayBox.textContent = result;
             break;
         };
-        displayBox.textContent = result;
+
 };
 
-function setOperator(opera){
-num1 = displayBox.textContent;
-operator = opera;
-clearDisplay();
-};
 
 
 let operaBtn = document.querySelectorAll('.oper');
 operaBtn.forEach((operaButton) => {
         operaButton.addEventListener("click", function (){
-            let operation = operaButton.dataset.opera;
-                setOperator(operation);
+        if( firstNumInit == true && secondNumInit == false){ 
+            operator = operaButton.dataset.opera;
+            firstNumInit = false;
+            secondNumInit = true; 
+        // sets the operator being selected then initializes num2.
+        }
+        else if(num2.length != 0){ //if num1 and num2 exists already, and the user clicks the operator button again, the calculator operates with the 2 numbers inputted first.
+            operate(num1,operator,num2);
+            num1 = result;
+            result = null;
+            num2 = [];
+            operator = operaButton.dataset.opera;
+        }
              });
 })
 
 let equalBtn = document.querySelector('.equal');
 equalBtn.addEventListener("click", function (){
         operate(num1,operator,num2);
+        firstNumInit = true; //Initializes back to num1
+        secondNumInit = false;
+        num1 = result; //the result of the operation will be stored to the first number or 'num1' to be used in another calculation
+        result = null;
+        num2 = [];
+        operator = null;
 });
 
 
